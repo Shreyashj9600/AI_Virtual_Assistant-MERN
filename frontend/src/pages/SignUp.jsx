@@ -17,8 +17,11 @@ function SignUp() {
 
     const { serverUrl } = useContext(userDataContext)
 
+    const [err, setErr] = useState('')
+
     const handleSignUP = async (e) => {
         e.preventDefault()
+        setErr("")
         try {
             let result = await axios.post(`${serverUrl}/api/auth/signup`, {
                 name, email, password
@@ -26,6 +29,7 @@ function SignUp() {
             console.log(result.data)
         } catch (error) {
             console.log(error)
+            setErr(error.response.data.message)
         }
     }
 
@@ -54,6 +58,7 @@ function SignUp() {
                     className="w-full h-15 outline-none border-2 border-white bg-transparent text-white placeholder-gray-300 px-5 py-2.5 rounded-full text-[18px]"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                    autoComplete="email"
                     required
                 />
                 <div className="w-full h-15  border-2 border-white bg-transparent text-white rounded-full text-[18px] relative">
@@ -63,6 +68,7 @@ function SignUp() {
                         className="w-full h-full rounded-full outline-none bg-transparent  placeholder-gray-300 px-5 py-2.5"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
+                        autoComplete="current-password"
                         required
                     />
                     {!showPassword && (
@@ -78,6 +84,7 @@ function SignUp() {
                         />
                     )}
                 </div>
+                {err.length > 0 && <p className="text-red-500">*{err}</p>}
                 <button className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] ">
                     Sign Up
                 </button>
