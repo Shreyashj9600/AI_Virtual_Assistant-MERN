@@ -3,6 +3,7 @@ import User from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
 
 export const signUp = async (req, res) => {
+    console.log('body', req.body)
     try {
         const { name, email, password } = req.body
 
