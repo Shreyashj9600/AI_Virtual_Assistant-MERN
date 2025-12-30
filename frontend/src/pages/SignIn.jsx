@@ -13,6 +13,7 @@ function SignUp() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const { serverUrl } = useContext(userDataContext)
 
@@ -21,14 +22,17 @@ function SignUp() {
     const handleSignIn = async (e) => {
         e.preventDefault()
         setErr("")
+        setLoading(true)
         try {
             let result = await axios.post(`${serverUrl}/api/auth/signin`, {
                 email, password
             }, { withCredentials: true })
             console.log(result.data)
+            setLoading(false)
         } catch (error) {
             console.log(error)
             setErr(error.response.data.message)
+            setLoading(false)
         }
     }
 
@@ -77,8 +81,8 @@ function SignUp() {
                     )}
                 </div>
                 {err.length > 0 && <p className="text-red-500">*{err}</p>}
-                <button className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] ">
-                    Sign In
+                <button className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] " disabled={loading}>
+                    {loading ? "loading..." : "Sign In"}
                 </button>
                 <p
                     className="text-[white] cursor-pointer"
