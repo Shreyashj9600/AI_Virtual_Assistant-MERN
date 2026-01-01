@@ -20,10 +20,10 @@ const UserContext = ({ children }) => {
 
     useEffect(() => {
         handleCurrentUser()
-    },[])
+    }, [])
 
     const value = {
-        serverUrl
+        serverUrl, userData, setUserData
     }
     return (
         <div>

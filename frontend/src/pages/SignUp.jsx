@@ -16,7 +16,7 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
 
-    const { serverUrl } = useContext(userDataContext)
+    const { serverUrl, userData, setUserData } = useContext(userDataContext)
 
     const [err, setErr] = useState('')
 
@@ -29,9 +29,11 @@ function SignUp() {
                 name, email, password
             }, { withCredentials: true })
             setLoading(false)
-            console.log(result.data)
+            navigate('/customize')
+            setUserData(result.data)
         } catch (error) {
             setLoading(false)
+            setUserData(null)
             console.log(error)
             setErr(error.response.data.message)
         }
@@ -90,7 +92,7 @@ function SignUp() {
                 </div>
                 {err.length > 0 && <p className="text-red-500">*{err}</p>}
                 <button disabled={loading} className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] ">
-                    {loading? "Loading" : "Sign Up"}
+                    {loading ? "Loading" : "Sign Up"}
                 </button>
                 <p
                     className="text-[white] cursor-pointer"
