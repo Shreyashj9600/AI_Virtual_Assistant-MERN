@@ -1,18 +1,33 @@
-import React from 'react'
-import Card from '../components/Card'
-import image1 from '../assets/image1.png'
-import image2 from '../assets/image2.jpg'
-import image3 from '../assets/authBg.png'
-import image4 from '../assets/image4.png'
-import image5 from '../assets/image5.png'
-import image6 from '../assets/image6.jpeg'
-import image7 from '../assets/image7.jpeg'
+import React, { useRef, useState } from "react";
+import Card from "../components/Card";
+import image1 from "../assets/image1.png";
+import image2 from "../assets/image2.jpg";
+import image3 from "../assets/authBg.png";
+import image4 from "../assets/image4.png";
+import image5 from "../assets/image5.png";
+import image6 from "../assets/image6.jpeg";
+import image7 from "../assets/image7.jpeg";
 import { RiImageAddLine } from "react-icons/ri";
 
 const Customize = () => {
+  const [frontendImage, setFrontendImage] = useState(null);
+  const [backendImage, setBackendImage] = useState(null);
+  
+  const inputImage = useRef();
+
+  const handelImage = (e) => {
+    const file = e.target.files[0];
+    console.log("file",file)
+    setBackendImage(file); 
+    setFrontendImage(URL.createObjectURL(file));
+  };
+
   return (
-    <div className="w-full h-screen bg-gradient-to-t from-black to-[#030353] flex justify-center items-center flex-col">
-      <div className='w-[90%] max-w-[60%] flex justify-center items-center flex-wrap gap-[20px] '>
+    <div className="w-full h-screen bg-gradient-to-t from-black to-[#030353] flex justify-center items-center flex-col p-[40px]  ">
+      <h1 className="text-white text-[30px] text-center mb-[40px] ">
+        Select your <span className="text-blue-300">Assistant Image </span>
+      </h1>
+      <div className="w-[90%] max-w-[900px] flex justify-center items-center flex-wrap gap-[15px] ">
         <Card image={image1} />
         {/* <Card image={image2} /> */}
         <Card image={image3} />
@@ -21,13 +36,30 @@ const Customize = () => {
         <Card image={image6} />
         <Card image={image7} />
 
-        <div className='w-[150px] h-[250px] bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center'>
-          <RiImageAddLine className='w-[25px] h-[25px] text-white' />
+        <div
+          className="w-[70px] h-[140px] lg:w-[150px] lg:h-[250px] bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center"
+          onClick={() => inputImage.current.click()}
+        >
+          {!frontendImage && (
+            <RiImageAddLine className="w-[25px] h-[25px] text-white" />
+          )}
+          {frontendImage && (
+            <img src={frontendImage} className="h-full object-cover" />
+          )}
         </div>
-
+        <input
+          type="file"
+          accept="image/*"
+          ref={inputImage}
+          hidden
+          onChange={handelImage}
+        />
       </div>
+      <button className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] mt-1  ">
+        Next
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Customize
+export default Customize;
