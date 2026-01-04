@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { userDataContext } from "../context/userContext";
 
 function Card({ image }) {
+    const {
+        serverUrl,
+        userData,
+        setUserData,
+        frontendImage,
+        setFrontendImage,
+        backendImage,
+        setBackendImage,
+        selectedImage,
+        setSelectedImage,
+    } = useContext(userDataContext);
     return (
-        <div className='w-[70px] h-[160px] lg:w-[150px] lg:h-[240px] bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white'>
-            <img src={image} className='h-full object-cover' />
+        <div
+            className={`w-17.5 h-40 lg:w-37.5 lg:h-60 bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white ${selectedImage == image
+                ? "border-4 border-white shadow-2xl shadow-blue-950"
+                : null
+                }`}
+            onClick={() => setSelectedImage(image)}
+        >
+            <img src={image} className="h-full object-cover" />
         </div>
-    )
+    );
 }
 
-export default Card
+export default Card;
