@@ -9,6 +9,7 @@ import image6 from "../assets/image6.jpeg";
 import image7 from "../assets/image7.jpeg";
 import { RiImageAddLine } from "react-icons/ri";
 import { userDataContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Customize = () => {
   const {
@@ -24,6 +25,8 @@ const Customize = () => {
   } = useContext(userDataContext);
 
   const inputImage = useRef();
+
+  const navigate = useNavigate();
 
   const handelImage = (e) => {
     const file = e.target.files[0];
@@ -46,10 +49,11 @@ const Customize = () => {
         <Card image={image7} />
 
         <div
-          className={`w-17.5 h-35 lg:w-37.5 lg:h-62.5 bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center ${selectedImage == "input"
-            ? "border-4 border-white shadow-2xl shadow-blue-950"
-            : null
-            }`}
+          className={`w-17.5 h-35 lg:w-37.5 lg:h-62.5 bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center ${
+            selectedImage == "input"
+              ? "border-4 border-white shadow-2xl shadow-blue-950"
+              : null
+          }`}
           onClick={() => inputImage.current.click()}
         >
           {!frontendImage && (
@@ -67,10 +71,14 @@ const Customize = () => {
           onChange={handelImage}
         />
       </div>
-      {selectedImage && <button className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] mt-1  ">
-        Next
-      </button>}
-
+      {selectedImage && (
+        <button
+          onClick={() => navigate("customize2")}
+          className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] mt-1  "
+        >
+          Next
+        </button>
+      )}
     </div>
   );
 };
