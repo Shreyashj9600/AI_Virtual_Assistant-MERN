@@ -74,7 +74,7 @@ const Customize = () => {
       {selectedImage && (
         <button
           onClick={() => navigate("/customize2")}
-          className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] mt-1  "
+          className="min-w-37.5 h-15 text-\[18px\] bg-white rounded-full text-black font-semibold text-\[19px\] mt-1 cursor-pointer  "
         >
           Next
         </button>
