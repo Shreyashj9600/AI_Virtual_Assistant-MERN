@@ -10,6 +10,7 @@ import image7 from "../assets/image7.jpeg";
 import { RiImageAddLine } from "react-icons/ri";
 import { userDataContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const Customize = () => {
   const {
@@ -36,6 +37,7 @@ const Customize = () => {
 
   return (
     <div className="w-full h-screen bg-linear-to-t from-black to-[#030353] flex justify-center items-center flex-col p-10  ">
+      <IoArrowBackOutline className="absolute top-7.5 left-7.5 w-6.25 h-6.25 text-white" onClick={() => navigate('/')} />
       <h1 className="text-white text-[30px] text-center mb-10 ">
         Select your <span className="text-blue-300">Assistant Image </span>
       </h1>
