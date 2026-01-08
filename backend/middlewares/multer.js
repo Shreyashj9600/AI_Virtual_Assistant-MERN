@@ -4,7 +4,7 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cd(null, "./public")
     },
-    filename: (req, file, cb) => {
+    filename: (req, file, cb) => { 
         cb(null, file.originalname)
     }
 })
