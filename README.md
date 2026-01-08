@@ -1,5 +1,3 @@
-﻿# AI_Virtual_Assistant-MERN
-
 # AI Virtual Assistant – MERN
 
 AI-powered virtual assistant built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js).  
@@ -53,6 +51,7 @@ AI_Virtual_Assistant-MERN/
 ├── backend/        # Backend code
 ├── frontend/       # React frontend code
 ├── README.md       # Project documentation
+
 
 
 
