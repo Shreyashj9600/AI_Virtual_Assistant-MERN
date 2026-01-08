@@ -36,9 +36,9 @@ cd AI_Virtual_Assistant-MERN
 ```
 
 ### Backend Setup
-cd backend
-npm install
-npm run dev
+<p> cd backend </p> 
+<p> npm install </p> 
+<p> npm run dev </p> 
 
 ### Frontend Setup
 cd frontend
@@ -51,6 +51,7 @@ AI_Virtual_Assistant-MERN/
 ├── backend/        # Backend code
 ├── frontend/       # React frontend code
 ├── README.md       # Project documentation
+
 
 
 
