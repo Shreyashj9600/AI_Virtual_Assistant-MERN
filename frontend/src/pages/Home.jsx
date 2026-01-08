@@ -4,15 +4,15 @@ import { userDataContext } from "../context/userContext";
 function Home() {
   const { userData } = useContext(userDataContext);
   return (
-    <div className="w-full h-screen bg-linear-to-t from-black to-[#030353] flex justify-center items-center flex-col gap-[15px] ">
+    <div className="w-full h-screen bg-linear-to-t from-black to-[#030353] flex justify-center items-center flex-col gap-3.75 ">
       <button
-        className="min-w-[150px] h-[60px] mt-[30px] text-black font-semibold absolute top-[20px] right-[20px] bg-white rounded-full text-[19px] "
+        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold absolute top-5 right-5 bg-white rounded-full text-[19px] "
       >
         Log Out
       </button>
 
       <button
-        className="min-w-[150px] h-[60px] mt-[30px] text-black font-semibold bg-white absolute top-[100px] right-[20px] rounded-full text-[19px] px-[20px] py-[10px] "
+        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold bg-white absolute top-25 right-5 rounded-full text-[19px] px-5 py-2.5 "
       >
         Customize your Assistant
       </button>
