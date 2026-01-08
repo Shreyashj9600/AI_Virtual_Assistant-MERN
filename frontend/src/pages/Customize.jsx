@@ -49,12 +49,14 @@ const Customize = () => {
         <Card image={image7} />
 
         <div
-          className={`w-17.5 h-35 lg:w-37.5 lg:h-62.5 bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center ${
-            selectedImage == "input"
-              ? "border-4 border-white shadow-2xl shadow-blue-950"
-              : null
-          }`}
-          onClick={() => inputImage.current.click()}
+          className={`w-17.5 h-35 lg:w-37.5 lg:h-62.5 bg-[#02021e] border-2 border-[#0000ff8d] rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-950 cursor-pointer hover:border-4 hover:border-white flex justify-center items-center ${selectedImage == "input"
+            ? "border-4 border-white shadow-2xl shadow-blue-950"
+            : null
+            }`}
+          onClick={() => {
+            inputImage.current.click()
+            setSelectedImage('input')
+          }}
         >
           {!frontendImage && (
             <RiImageAddLine className="w-6.25 h-6.25 text-white" />

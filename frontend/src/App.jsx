@@ -9,6 +9,7 @@ import Customize2 from "./pages/Customize2";
 
 const App = () => {
   const { userData, setUserData } = useContext(userDataContext);
+
   return (
     <Routes>
       <Route
@@ -23,7 +24,7 @@ const App = () => {
       />
       <Route
         path="/signup"
-        element={!userData ? <SignUp /> : <Navigate to={"/"} />}
+        element={!userData ? <SignUp /> : <Navigate to={"/customize"} />}
       />
       <Route
         path="/signin"
@@ -31,11 +32,11 @@ const App = () => {
       />
       <Route
         path="/customize"
-        element={userData ? <Customize /> : <Navigate to={"/signin"} />}
+        element={userData ? <Customize /> : <Navigate to={"/signup"} />}
       />
       <Route
         path="/customize2"
-        element={userData ? <Customize2 /> : <Navigate to={"/signin"} />}
+        element={userData ? <Customize2 /> : <Navigate to={"/signup"} />}
       />
     </Routes>
   );
