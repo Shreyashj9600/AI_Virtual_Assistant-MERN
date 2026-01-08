@@ -35,7 +35,7 @@ git clone https://github.com/Shreyashj9600/AI_Virtual_Assistant-MERN.git
 cd AI_Virtual_Assistant-MERN
 ```
 
-<h1> ### Backend Setup </h1>
+ ### Backend Setup 
 <p> cd backend </p> 
 <p> npm install </p> 
 <p> npm run dev </p> 
