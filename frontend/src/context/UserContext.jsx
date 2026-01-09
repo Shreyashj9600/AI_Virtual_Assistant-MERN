@@ -38,7 +38,7 @@ const UserContext = ({ children }) => {
         setSelectedImage
     };
     return (
-        <div>
+        <div> 
             <userDataContext.Provider value={value}>
                 {children}
             </userDataContext.Provider>
