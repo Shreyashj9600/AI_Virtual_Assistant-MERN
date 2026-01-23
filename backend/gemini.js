@@ -22,7 +22,7 @@ userInput me only bo search baala text jaye,
 
 Instructions:
 - "type": determine the intent of the user.
-- "userinput": original sentence the user spoke.
+- "userInput": original sentence the user spoke.
 - "response": A short voice-friendly reply, e.g., "Sure, playing it now", "Here's
 what I found", "Today is Tuesday", etc.
 
