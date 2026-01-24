@@ -16,11 +16,20 @@ const UserContext = ({ children }) => {
                 withCredentials: true,
             });
             setUserData(result.data);
-            console.log(result.data);
+            // console.log(result.data);
         } catch (error) {
             console.log(error);
         }
     };
+
+    const getGeminiResponse = async (command) => {
+        try {
+            const result = await axios.post(`${serverUrl}/api/user/asktoassistant`, { command }, { withCredentials: true })
+            return result.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         handleCurrentUser();
@@ -35,10 +44,11 @@ const UserContext = ({ children }) => {
         backendImage,
         setBackendImage,
         selectedImage,
-        setSelectedImage
+        setSelectedImage,
+        getGeminiResponse
     };
     return (
-        <div> 
+        <div>
             <userDataContext.Provider value={value}>
                 {children}
             </userDataContext.Provider>
