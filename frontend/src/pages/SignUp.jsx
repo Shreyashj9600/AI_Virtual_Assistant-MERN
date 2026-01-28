@@ -7,7 +7,8 @@ import { userDataContext } from "../context/userContext";
 import axios from "axios";
 
 function SignUp() {
-    const [showPassword, setShowPassword] = useState(false);
+    
+    const [showPassword, setShowPassword] = useState(true);
 
     const navigate = useNavigate();
 
