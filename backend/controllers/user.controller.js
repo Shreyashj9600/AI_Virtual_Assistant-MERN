@@ -45,7 +45,7 @@ export const askToAssistant = async (req, res) => {
         const user = await User.findById(req.userId);
         const userName = user.name
         const assistantName = user.assistantName
-        const result = await geminiResponse(command, userName, assistantName)
+        const result = await geminiResponse(command, assistantName, userName)
 
         const jsonMatch = result.match(/{[\s\S]*}/)
         if (!jsonMatch) {
@@ -53,48 +53,46 @@ export const askToAssistant = async (req, res) => {
         }
 
         const gemResult = JSON.parse(jsonMatch[0])
+        // console.log(gemResult);
+        console.log("RAW GEMINI:", gemResult);
+        
         const type = gemResult.type
 
         switch (type) {
-            case 'get_date':
+            case 'get-date':
                 return res.json({
                     type,
                     userInput: gemResult.userInput,
                     response: `current date is ${moment().format("YYYY-MM-DD")}`
                 });
 
-            case 'get_time':
+            case 'get-time':
                 return res.json({
                     type,
                     userInput: gemResult.userInput,
                     response: `current time is ${moment().format("hh:mm A")}`
                 });
-            case 'get_day':
+            case 'get-day':
                 return res.json({
                     type,
                     userInput: gemResult.userInput,
                     response: `today is ${moment().format("dddd")}`
                 });
-            case 'get_day':
-                return res.json({
-                    type,
-                    userInput: gemResult.userInput,
-                    response: `today is ${moment().format("dddd")}`
-                });
-            case 'get_month':
+            
+            case 'get-month':
                 return res.json({
                     type,
                     userInput: gemResult.userInput,
                     response: `today is ${moment().format("MMMM")}`
                 });
-            case 'google_search':
-            case 'youtube_search':
-            case 'youtube_play':
+            case 'google-search':
+            case 'youtube-search':
+            case 'youtube-play':
             case 'general':
-            case "calculator_open":
-            case "instagram_open":
-            case "facebook_open":
-            case "weather_show":
+            case "calculator-open":
+            case "instagram-open":
+            case "facebook-open":
+            case "weather-show":
                 return res.json({
                     type,
                     userInput: gemResult.userInput,

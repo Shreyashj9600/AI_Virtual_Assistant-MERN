@@ -3,6 +3,8 @@ import axios from "axios";
 const geminiResponse = async (command, assistantName, userName) => {
     try {
         const apiUrl = process.env.GEMINI_API_URL;
+        console.log("Gemini URL:", apiUrl);
+
         const prompt = `You are a virtual assistant named ${assistantName} created by 
         ${userName}.
 You are not Google. You will now behave like a voice-enabled assistant.
@@ -11,8 +13,8 @@ Your task is to understand the user's natural language input and respond with a 
 object like this:
 
 {
-  "type": "general" | "google_search" | "youtube_search" | "youtube_play" |
-  "get_time" | "get_date" | "get_day" | "get_month"|"calculator_open" |
+  "type": "general" | "google-search" | "youtube-search" | "youtube-play" |
+  "get-time" | "get-date" | "get-day" | "get-month"|"calculator-open" |
   "instagram_open" |"facebook_open" |"weather-show",
   "userinput": "<original user input>" {only remove your name from userinput if
 exists} and agar kisi ne google ya youtube pe kuch search karne ko bola hai to
@@ -28,20 +30,20 @@ what I found", "Today is Tuesday", etc.
 
 Type meanings:
 - "general": if it's a factual or informational question.
-- "google_search": if user wants to search something on Google .
-- "youtube_search": if user wants to search something on YouTube.
-- "youtube_play": if user wants to directly play a video or song.
-- "calculator_open": if user wants to open a calculator .
-- "instagram_open": if user wants to open instagram .
-- "facebook_open": if user wants to open facebook.
+- "google-search": if user wants to search something on Google .
+- "youtube-search": if user wants to search something on YouTube.
+- "youtube-play": if user wants to directly play a video or song.
+- "calculator-open": if user wants to open a calculator .
+- "instagram-open": if user wants to open instagram .
+- "facebook-open": if user wants to open facebook.
 -"weather-show": if user wants to know weather.
-- "get_time": if user asks for current time.
-- "get_date": if user asks for today's date.
-- "get_day": if user asks what day it is.
-- "get_month": if user asks for the current month.
+- "get-time": if user asks for current time.
+- "get-date": if user asks for today's date.
+- "get-day": if user asks what day it is.
+- "get-month": if user asks for the current month.
 
 Important:
-- Use "{author name}" agar koi puche tume kisne banaya
+- Use ${userName} agar koi puche tume kisne banaya
 - Only respond with the JSON object, nothing else.
 
 now your userInput- ${command}
@@ -52,11 +54,7 @@ now your userInput- ${command}
             {
                 contents: [
                     {
-                        parts: [
-                            {
-                                text: prompt,
-                            },
-                        ],
+                        parts: [{ text: prompt }],
                     },
                 ],
             },
@@ -67,12 +65,32 @@ now your userInput- ${command}
             }
         );
 
-        return response.data.candidates[0].content.parts[0].text;
+
+        const text =
+            response.data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!text) {
+            console.error("Empty Gemini response:", response.data);
+            return JSON.stringify({
+                type: "general",
+                userInput: command,
+                response: "Sorry, I couldn't understand that."
+            });
+        }
+
+        return text;
+
     } catch (error) {
         console.error(
             "Gemini API Error:",
             error.response?.data || error.message
         );
+
+        return JSON.stringify({
+            type: "general",
+            userInput: command,
+            response: "Something went wrong. Please try again."
+        });
     }
 };
 
