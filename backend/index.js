@@ -10,7 +10,7 @@ import geminiResponse from "./gemini.js"
 
 const app = express()
 app.use(cors({
-    origin: 'https://ai-virtual-assistant-mern-2.onrender.com',
+    origin: 'https://iridescent-sopapillas-ac2bb9.netlify.app',
     credentials: true
 }))
 const port = process.env.PORT || 5000
