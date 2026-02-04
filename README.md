@@ -1,59 +1,65 @@
-# AI Virtual Assistant – MERN
+# 🤖 AI Virtual Assistant (MERN Stack)
 
-AI-powered virtual assistant built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js).  
-The assistant supports real-time chat, OpenAI integration, secure user authentication, and customizable assistant settings.
+An AI-powered Virtual Assistant web application built using the MERN stack.  
+This assistant can respond to user commands, perform actions like searching Google, playing YouTube videos, opening social platforms, and provides a customizable assistant experience.
+
+---
+
+## Live Demo
+
+- Frontend: https://ai-virtual-assistant-mern-2.onrender.com/
+- Backend API: (Add your backend URL here)
 
 ---
 
 ##  Features
 
-✅ Real-time AI chat using OpenAI  
-✅ User authentication (Sign up / Login)  
-✅ Update assistant name and image  
-✅ JWT token security  
-✅ Responsive React UI  
-✅ Full MERN architecture
+ User Authentication (Signup/Login/Logout) using  
+ JWT Token & Secure Cookies  
+ AI Command Handling using Gemini API  
+ Voice Recognition & Speech Response  
+ Assistant Customization (Name & Image Update)  
+ Cloudinary Image Upload Support  
+ Responsive UI with Modern Design  
+ Protected Routes & Secure APIs  
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
-- **Frontend:** React.js  
-- **Backend:** Express.js & Node.js  
-- **Database:** MongoDB  
-- **AI:** OpenAI API  
-- **Authentication:** JWT
+### Frontend
+- React.js (Vite)
+- Tailwind CSS
+- Axios
+- React Router DOM
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JWT Authentication
+- Multer (File Upload)
+- Cloudinary Storage
+
+### AI Integration
+- Google Gemini API
 
 ---
 
-## 🛠️ How to Run Locally
+## 📂 Project Structure
 
-### 📦 1. Clone the project
-
-```bash 
-git clone https://github.com/Shreyashj9600/AI_Virtual_Assistant-MERN.git
-cd AI_Virtual_Assistant-MERN
-```
-
- ### Backend Setup 
-<p> cd backend </p> 
-<p> npm install </p> 
-<p> npm run dev </p> 
-
-### Frontend Setup
-cd frontend
-npm install
-npm run dev
-
-## Project Structure
-
+```bash
 AI_Virtual_Assistant-MERN/
-├── backend/        # Backend code
-├── frontend/       # React frontend code
-├── README.md       # Project documentation
-
-
-
-
-
-
+│
+├── frontend/        # React Client
+│   ├── src/
+│   └── vite.config.js
+│
+├── backend/         # Express Server
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middlewares/
+│   └── index.js
+│
+└── README.md
