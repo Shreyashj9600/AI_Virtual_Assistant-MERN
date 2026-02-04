@@ -7,8 +7,8 @@ This assistant can respond to user commands, perform actions like searching Goog
 
 ## Live Demo
 
-- Frontend: https://ai-virtual-assistant-mern-2.onrender.com/
-- Backend API: https://ai-virtual-assistant-mern-3.onrender.com/
+- App: https://ai-virtual-assistant-mern-2.onrender.com
+
 ---
 
 ##  Features
@@ -62,4 +62,5 @@ AI_Virtual_Assistant-MERN/
 │   └── index.js
 │
 └── README.md
+
 
