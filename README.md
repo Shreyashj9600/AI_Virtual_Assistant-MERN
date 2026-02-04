@@ -23,6 +23,11 @@ This assistant can respond to user commands, perform actions like searching Goog
  Protected Routes & Secure APIs  
 
 ---
+## Project History
+
+You can see the full commit history of this project here:  
+ https://github.com/Shreyashj9600/AI_Virtual_Assistant-MERN/commits/main/
+
 
 ## Tech Stack
 
@@ -62,6 +67,7 @@ AI_Virtual_Assistant-MERN/
 │   └── index.js
 │
 └── README.md
+
 
 
 
