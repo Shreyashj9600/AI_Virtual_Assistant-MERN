@@ -24,8 +24,8 @@ app.use(
   })
 );
 
-// ✅ Handle Preflight Requests
-app.options("*", cors());
+// // ✅ Handle Preflight Requests
+// app.options("*", cors());
 
 // ✅ Test Route
 app.get("/", (req, res) => {
