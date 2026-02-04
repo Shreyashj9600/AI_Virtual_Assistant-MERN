@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { userDataContext } from "../context/UserContext";
+import { userDataContext } from "../context/userContext";
 import { data, useNavigate } from "react-router-dom";
 import axios from "axios";
+import aiImg from '../assets/ai.gif';
+import userImg from '../assets/user.gif'
+import { AiOutlineMenu } from "react-icons/ai";
 
 function Home() {
   const { userData, setUserData, serverUrl, getGeminiResponse } = useContext(userDataContext);
@@ -13,6 +16,9 @@ function Home() {
   const recognitionRef = useRef(null)
   const synth = window.speechSynthesis
   const isProcessingRef = useRef(false)
+
+  const [userText, setUserText] = useState('')
+  const [aiText, setAiText] = useState('')
 
 
   const handelLogOut = async () => {
@@ -78,7 +84,7 @@ function Home() {
     if (data?.type === "calculator-open") {
       window.open("https://www.google.com/search?q=calculator", "_blank");
     }
-    if (type === "instagram_open") {
+    if (type === "instagram-open") {
       window.open(`https://www.instagram.com/`, '_blank');
     }
     if (type === "facebook-open") {
@@ -165,13 +171,17 @@ function Home() {
       console.log("You said:", transcript);
 
       if (transcript.toLowerCase().includes(userData.assistantName.toLowerCase())) {
+        setAiText('')
         isProcessingRef.current = true
+        setUserText(transcript)
         isRecognizingRef.current = false
         setListening(false)
 
         setTimeout(() => recognition.abort(), 300)
 
         const data = await getGeminiResponse(transcript)
+        setUserText('')
+        setAiText(data.response)
         console.log("Gemini data:", data)
         if (data?.response) {
           setTimeout(() => {
@@ -191,6 +201,7 @@ function Home() {
     //     safeRecognition()
     //   }
     // }, 10000)
+    
     safeRecognition()
 
     return () => {
@@ -204,15 +215,16 @@ function Home() {
 
   return (
     <div className="w-full h-screen bg-linear-to-t from-black to-[#030353] flex justify-center items-center flex-col gap-3.75 ">
+      <AiOutlineMenu className="lg:hidden text-white absolute top-5 right-5 w-6.25 h-6.25" />
       <button
-        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold cursor-pointer absolute top-5 right-5 bg-white rounded-full text-[19px] "
+        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold cursor-pointer absolute hidden lg:block top-5 right-5 bg-white rounded-full text-[19px] "
         onClick={handelLogOut}
       >
         Log Out
       </button>
 
       <button
-        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold cursor-pointer  bg-white absolute top-25 right-5 rounded-full text-[19px] px-5 py-2.5 "
+        className="min-w-37.5 h-15 mt-7.5 text-black font-semibold cursor-pointer  bg-white absolute top-25 right-5 rounded-full text-[19px] px-5 py-2.5 hidden lg:block "
         onClick={() => navigate('/customize')}
       >
         Customize your Assistant
@@ -228,15 +240,21 @@ function Home() {
       <h1 className="text-white text-[18px] font-semibold">
         I'm {userData?.assistantName}{" "}
       </h1>
-       <button
-          onClick={() => {
-            window.speechSynthesis.resume();
-            alert("Voice unlocked ✅ Now say: Hello Jarvis");
-          }}
-          className="bg-green-500 text-white px-4 py-2 rounded mb-4"
-        >
-          Enable Voice
-        </button>
+      {!aiText && <img src={userImg} className="w-50 " />}
+      {aiText && <img src={aiImg} className="w-50 " />}
+
+      <h1 className="text-white text-[18px]">{userText ? userText : aiText ? aiText : null}</h1>
+
+      // Enable Voice
+      {/* <button
+        onClick={() => {
+          window.speechSynthesis.resume();
+          alert("Voice unlocked   Now say: Hello Jarvis");
+        }}
+        className="bg-green-500 text-white px-4 py-2 rounded mb-4"
+      >
+        Enable Voice
+      </button> */}
     </div>
   );
 }
