@@ -25,7 +25,7 @@ app.use(
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "AI Virtual Assistant Backend API is running 🚀",
+    message: "AI Virtual Assistant Backend API is running...",
   });
 });
 
