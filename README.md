@@ -1,7 +1,7 @@
 # 🤖 AI Virtual Assistant (MERN Stack)
 
 An AI-powered Virtual Assistant web application built using the MERN stack.  
-This assistant can respond to user commands, perform actions like searching Google, playing YouTube videos, opening social platforms, and provides a customizable assistant experience.
+This assistant can respond to user commands, perform actions like searching Google, playing YouTube videos, opening social platforms, and provides a customizable assistant experience .
 
 ---
 
@@ -67,6 +67,7 @@ AI_Virtual_Assistant-MERN/
 │   └── index.js
 │
 └── README.md
+
 
 
 
