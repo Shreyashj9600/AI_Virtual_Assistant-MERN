@@ -1,36 +1,44 @@
-import express from "express"
-import dotenv from "dotenv"
-dotenv.config()
-import connectDb from "./config/db.js"
-import { authRouter } from "./routes/auth.router.js"
-import cors from 'cors'
-import cookieParser from "cookie-parser"
-import userRouter from "./routes/user.router.js"
-import geminiResponse from "./gemini.js"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-const app = express()
-app.use(cors({
-    origin: 'https://ai-virtual-assistant-mern-2.onrender.com',
-    credentials: true
-}))
-const port = process.env.PORT || 5000
+import connectDb from "./config/db.js";
+import { authRouter } from "./routes/auth.router.js";
+import userRouter from "./routes/user.router.js";
 
-app.get('/', (req, res) => {
-    res.send('API is running')
-})
+dotenv.config();
 
-app.use(express.json())
-app.use(cookieParser())
-app.use('/api/auth', authRouter)
-app.use('/api/user', userRouter)
+const app = express();
+const port = process.env.PORT || 5000;
 
-// app.get('/', async (req,res) => {
-//     let prompt = req.query.prompt 
-//     let data = await geminiResponse(prompt)
-//     res.json(data)
-// })
+// ✅ Middleware
+app.use(express.json());
+app.use(cookieParser());
+
+// ✅ CORS Config
+app.use(
+  cors({
+    origin: "https://ai-virtual-assistant-mern-2.onrender.com",
+    credentials: true,
+  })
+);
+
+// ✅ Handle Preflight Requests
+app.options("*", cors());
+
+// ✅ Test Route
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
+// ✅ Routes
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+
+// ✅ Start Server After DB Connection
+connectDb();
 
 app.listen(port, () => {
-    connectDb()
-    console.log(`server is started ${port}`)
-}) 
+  console.log(`Server started on port ${port}`);
+});
