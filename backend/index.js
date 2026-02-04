@@ -12,11 +12,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ CORS Config
 app.use(
   cors({
     origin: "https://ai-virtual-assistant-mern-2.onrender.com",
@@ -24,19 +22,17 @@ app.use(
   })
 );
 
-// // ✅ Handle Preflight Requests
-// app.options("*", cors());
-
-// ✅ Test Route
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.status(200).json({
+    success: true,
+    message: "AI Virtual Assistant Backend API is running 🚀",
+  });
 });
 
-// ✅ Routes
+
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 
-// ✅ Start Server After DB Connection
 connectDb();
 
 app.listen(port, () => {
