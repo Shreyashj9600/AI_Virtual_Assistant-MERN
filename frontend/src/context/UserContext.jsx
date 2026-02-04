@@ -5,7 +5,7 @@ export const userDataContext = createContext();
 
 const UserContext = ({ children }) => {
     // const serverUrl = "https://ai-virtual-assistant-mern-zypt.onrender.com";
-    const serverUrl = "https://ai-virtual-assistant-mern-3.onrender.com/";
+    const serverUrl = "https://ai-virtual-assistant-mern-3.onrender.com";
     const [userData, setUserData] = useState(null);
     const [frontendImage, setFrontendImage] = useState(null);
     const [backendImage, setBackendImage] = useState(null);
